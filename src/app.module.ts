@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductsModule } from './products/products.module';
 import { CommonModule } from './common/common.module';
 import { SeedModule } from './seed/seed.module';
+import { FilesModule } from './files/files.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -19,11 +21,17 @@ import { SeedModule } from './seed/seed.module';
       synchronize: true, // set to false in production
     }),
 
+    ServeStaticModule.forRoot({
+      rootPath: `${__dirname}/../public`,
+    }),
+
     ProductsModule,
 
     CommonModule,
 
     SeedModule,
+
+    FilesModule,
   ],
   controllers: [],
   providers: [],
