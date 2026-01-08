@@ -39,7 +39,7 @@ export class AuthService {
         email: user.email,
         fullName: user.fullName,
         roles: user.roles,
-        tokek: this.getJwtToken({ email: user.email }),
+        token: this.getJwtToken({ id: user.id }),
       };
 
       //TODO: Retornar JWT
@@ -57,6 +57,7 @@ export class AuthService {
       select: {
         email: true,
         password: true,
+        id: true,
       },
     });
 
@@ -70,7 +71,7 @@ export class AuthService {
 
     return {
       ...user,
-      token: this.getJwtToken({ email: user.email }),
+      token: this.getJwtToken({ id: user.id }),
     };
   }
 
