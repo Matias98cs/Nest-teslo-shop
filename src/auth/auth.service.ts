@@ -80,6 +80,13 @@ export class AuthService {
     return token;
   }
 
+  checkAuthStatus(user: User) {
+    return {
+      ...user,
+      token: this.getJwtToken({ id: user.id }),
+    };
+  }
+
   private handleDBErrors(error: any): never {
     const errorRes = error as { code: string; detail: string; message: string };
 
